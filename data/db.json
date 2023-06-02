@@ -1,0 +1,14 @@
+{
+  "todos": [
+    {
+      "title": "Complete an app",
+      "status": "pending",
+      "id": 1
+    },
+    {
+      "title": "Write an essay on globalisation.",
+      "status": "pending",
+      "id": 2
+    }
+  ]
+}
