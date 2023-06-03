@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 
-export const AddTodo = () => {
-  const [title, setTitle] = useState(" ");
+export const AddTodo = ({ setReload, reload }) => {
+  const [title, setTitle] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!title) {
+      return;
+    }
+
     const todos = { title };
+
     fetch("http://localhost:8000/todos", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -16,10 +22,13 @@ export const AddTodo = () => {
           alert("Link not working");
           throw new Error("Response from URL is not OK!");
         }
+        setTitle("");
       })
       .catch((e) => {
         alert(e);
       });
+
+    setReload(!reload);
   };
 
   return (
@@ -29,6 +38,7 @@ export const AddTodo = () => {
         <input
           type="text"
           value={title}
+          id="input-field"
           required
           onChange={(e) => setTitle(e.target.value)}
           style={{
